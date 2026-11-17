@@ -1,0 +1,313 @@
+TABLE Benefits
+  EmpNum integer
+  HealthCare character
+  LifeInsurance integer
+  Pension401K integer
+  StockPurchase integer
+  MedicalSpending integer
+  DependentCare integer
+  INDEX EmpNo unique primary
+
+TABLE BillTo
+  CustNum integer
+  BillToID integer
+  Name character
+  Address character
+  Address2 character
+  City character
+  State character
+  PostalCode character
+  Contact character
+  Phone character
+  INDEX custnumbillto unique primary
+
+TABLE Bin
+  WarehouseNum integer
+  Itemnum integer
+  Qty integer
+  BinNum integer
+  BinName character
+  INDEX BinNum unique primary
+  INDEX ItemNum
+  INDEX WarehouseNumItemNum
+
+TABLE Customer
+  CustNum integer
+  Name character
+  Address character
+  Address2 character
+  City character
+  State character
+  Country character
+  Phone character
+  Contact character
+  SalesRep character
+  Comments character
+  CreditLimit decimal
+  Balance decimal
+  Terms character
+  Discount integer
+  PostalCode character
+  Fax character
+  EmailAddress character
+  INDEX CustNum unique primary
+  INDEX Comments
+  INDEX CountryPost
+  INDEX Name
+  INDEX SalesRep
+
+TABLE Department
+  DeptCode character
+  DeptName character
+  INDEX DeptCode unique primary
+
+TABLE Employee
+  LastName character
+  FirstName character
+  Address character
+  Address2 character
+  City character
+  State character
+  PostalCode character
+  DeptCode character
+  Position character
+  HomePhone character
+  WorkPhone character
+  VacationDaysLeft integer
+  SickDaysLeft integer
+  EmpNum integer
+  StartDate date
+  Birthdate date
+  INDEX EmpNo unique primary
+  INDEX DeptCode
+  INDEX Name unique
+
+TABLE Family
+  RelativeName character
+  Relation character
+  Birthdate date
+  BenefitDate date
+  CoveredOnBenefits logical
+  EmpNum integer
+  INDEX EmpNoRelativeName unique primary
+
+TABLE Feedback
+  Contact character
+  Company character
+  EmailAddress character
+  Phone character
+  Fax character
+  Comments character
+  Department character
+  Rating integer
+  INDEX Department primary
+  INDEX Comments
+  INDEX Company
+  INDEX Contact
+  INDEX Rating
+
+TABLE InventoryTrans
+  InvTransNum integer
+  WarehouseNum integer
+  BinNum integer
+  Qty integer
+  Itemnum integer
+  TransDate date
+  InvType character
+  PONum integer
+  Ordernum integer
+  Transtime character
+
+TABLE Invoice
+  Invoicenum integer
+  CustNum integer
+  InvoiceDate date
+  Amount decimal
+  TotalPaid decimal
+  Adjustment decimal
+  OrderNum integer
+  ShipCharge decimal
+  INDEX InvoiceNum unique primary
+  INDEX CustNum
+  INDEX InvoiceDate
+  INDEX OrderNum
+
+TABLE Item
+  Itemnum integer
+  ItemName character
+  CatPage integer
+  Price decimal
+  CatDescription character
+  Onhand integer
+  Allocated integer
+  ReOrder integer
+  OnOrder integer
+  Category1 character
+  Category2 character
+  Special character
+  Weight decimal
+  Minqty integer
+  INDEX ItemNum unique primary
+  INDEX CatDescription
+  INDEX Category2ItemName
+  INDEX CategoryItemName
+  INDEX ItemName
+
+TABLE LocalDefault
+  Country character
+  Region1Label character
+  Region2Label character
+  PostalLabel character
+  PostalFormat character
+  TelFormat character
+  DateFormat character
+  CurrencySymbol character
+  LocalDefNum integer
+  INDEX localdefnum unique primary
+
+TABLE Order
+  Ordernum integer
+  CustNum integer
+  OrderDate date
+  ShipDate date
+  PromiseDate date
+  Carrier character
+  Instructions character
+  PO character
+  Terms character
+  SalesRep character
+  BillToID integer
+  ShipToID integer
+  OrderStatus character
+  WarehouseNum integer
+  Creditcard character
+  INDEX OrderNum unique primary
+  INDEX CustOrder unique
+  INDEX OrderDate
+  INDEX OrderStatus
+  INDEX SalesRep
+
+TABLE OrderLine
+  Ordernum integer
+  Linenum integer
+  Itemnum integer
+  Price decimal
+  Qty integer
+  Discount integer
+  ExtendedPrice decimal
+  OrderLineStatus character
+  INDEX orderline unique primary
+  INDEX itemnum
+  INDEX OrderLineStatus
+
+TABLE POLine
+  Linenum integer
+  Itemnum integer
+  Price decimal
+  Qty integer
+  Discount integer
+  ExtendedPrice decimal
+  PONum integer
+  POLineStatus character
+  INDEX PONumLinenum unique primary
+
+TABLE PurchaseOrder
+  PONum integer
+  DateEntered date
+  SupplierIDNum integer
+  ReceiveDate date
+  POStatus character
+  INDEX PONum unique primary
+
+TABLE RefCall
+  CallNum character
+  CustNum integer
+  CallDate date
+  SalesRep character
+  Parent character
+  Txt character
+  INDEX CallNum unique primary
+  INDEX CustNum unique
+  INDEX Sibling unique
+  INDEX Txt
+
+TABLE Salesrep
+  RepName character
+  Region character
+  SalesRep character
+  MonthQuota integer
+  INDEX SalesRep unique primary
+
+TABLE ShipTo
+  CustNum integer
+  ShipToID integer
+  Contact character
+  Address character
+  Address2 character
+  City character
+  State character
+  PostalCode character
+  Phone character
+  Comments character
+  Name character
+  INDEX custnumshipto unique primary
+
+TABLE State
+  State character
+  StateName character
+  Region character
+  INDEX State unique primary
+
+TABLE Supplier
+  SupplierIDNum integer
+  Name character
+  Address character
+  Address2 character
+  City character
+  State character
+  Country character
+  Phone character
+  Password character
+  LoginDate date
+  Comments character
+  ShipAmount integer
+  PostalCode character
+  Discount integer
+  INDEX SupplierID unique primary
+
+TABLE SupplierItemXref
+  SupplierIDNum integer
+  Itemnum integer
+  INDEX SupplieridItemNum unique primary
+  INDEX ItemNumSupplierID unique
+
+TABLE TimeSheet
+  EmpNum integer
+  DayRecorded date
+  TypeRecorded character
+  AMTimeIn character
+  AMTimeOut character
+  PMTimeIn character
+  PMTimeOut character
+  RegularHours decimal
+  OvertimeHours decimal
+  INDEX EmpNoDayRecorded unique primary
+
+TABLE Vacation
+  EmpNum integer
+  StartDate date
+  EndDate date
+  INDEX EmpNoStartDate unique primary
+
+TABLE Warehouse
+  WarehouseNum integer
+  WarehouseName character
+  Country character
+  Address character
+  Address2 character
+  City character
+  State character
+  PostalCode character
+  Phone character
+  INDEX warehousenum unique primary
+  INDEX warehousename
